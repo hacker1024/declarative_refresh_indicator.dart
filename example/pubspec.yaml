@@ -1,0 +1,21 @@
+name: declarative_refresh_indicator_example
+description: A declarative_refresh_indicator example.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.12.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  declarative_refresh_indicator:
+    path: '..'
+
+dev_dependencies:
+  lint: ^1.5.3
+
+flutter:
+  uses-material-design: true
