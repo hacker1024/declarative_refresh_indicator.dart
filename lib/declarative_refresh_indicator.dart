@@ -130,7 +130,7 @@ class _DeclarativeRefreshIndicatorState
   void initState() {
     super.initState();
     // If the indicator should be shown initially, show it.
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       if (widget.refreshing) _show();
     });
   }
