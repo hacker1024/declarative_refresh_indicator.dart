@@ -119,7 +119,8 @@ class _DeclarativeRefreshIndicatorState
 
   /// Hide the indicator.
   void _hide() {
-    assert(_showing, 'Hide called, but not showing!');
+    assert(_showing,
+        'Hide called, but not showing! Did you call setState in initState?');
     assert(!_completer!.isCompleted,
         'The completer should never exist in a completed state!');
     _completer!.complete();
