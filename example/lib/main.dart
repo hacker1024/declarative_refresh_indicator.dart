@@ -40,7 +40,7 @@ class _MyListPageState extends State<MyListPage> {
   @override
   void initState() {
     super.initState();
-    _load();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _load());
   }
 
   void _load() async {
