@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:declarative_refresh_indicator/declarative_refresh_indicator.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 /// An example app that uses [DeclarativeRefreshIndicator].
@@ -68,16 +69,19 @@ class _MyListPageState extends State<MyListPage> {
       body: DeclarativeRefreshIndicator(
         refreshing: _loading || _forceShowIndicator,
         onRefresh: _load,
-        child: ListView.builder(
-          physics: const AlwaysScrollableScrollPhysics(),
-          itemCount: _randomColors.length,
-          itemExtent: _rowHeight,
-          itemBuilder: (context, index) {
-            return ColoredBox(
-              color: _randomColors[index],
-              child: const SizedBox(height: _rowHeight),
-            );
-          },
+        child: ScrollConfiguration(
+          behavior: const AlwaysDraggingScrollBehaviour(),
+          child: ListView.builder(
+            physics: const AlwaysScrollableScrollPhysics(),
+            itemCount: _randomColors.length,
+            itemExtent: _rowHeight,
+            itemBuilder: (context, index) {
+              return ColoredBox(
+                color: _randomColors[index],
+                child: const SizedBox(height: _rowHeight),
+              );
+            },
+          ),
         ),
       ),
     );
@@ -91,4 +95,11 @@ class _MyListPageState extends State<MyListPage> {
       return Color((alpha << (8 * 3)) | rgb);
     });
   }
+}
+
+class AlwaysDraggingScrollBehaviour extends MaterialScrollBehavior {
+  const AlwaysDraggingScrollBehaviour();
+
+  @override
+  Set<PointerDeviceKind> get dragDevices => const {...PointerDeviceKind.values};
 }
